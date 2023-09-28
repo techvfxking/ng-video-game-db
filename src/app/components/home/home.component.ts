@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
 import { APIResponses, Game } from 'src/app/models';
 
@@ -9,12 +9,13 @@ import { APIResponses, Game } from 'src/app/models';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  public sort: string = "";
+  public sort: string = '';
   public games: Array<Game> = [];
 
   constructor(
     private httpService: HttpService,
     private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -37,6 +38,10 @@ export class HomeComponent implements OnInit {
 
   logItem(item: any): void {
     console.log(item);
+  }
+
+  openGameDetails(id:number):void {
+    this.router.navigate([""]);
   }
 }
 
